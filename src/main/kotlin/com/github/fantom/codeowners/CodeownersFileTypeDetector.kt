@@ -28,17 +28,19 @@ class CodeownersFileTypeDetector : FileTypeRegistry.FileTypeDetector {
         LOGGER.trace("Detecting lang: ${file.path}")
         return if (file.name == CodeownersLanguage.INSTANCE.filename) {
             if (firstCharsIfText != null) {
-                if (firstCharsIfText.lineSequence().any(::detectBitbucketFileType)) {
-                    LOGGER.trace("Detected lang using firstCharsIfText: bb")
-                    BitbucketFileType
-                    // firstCharsIfText may be not enough to find bb-specific pattern, so check whole file content
-                } else if (file.inputStream.reader().useLines { it.any(::detectBitbucketFileType) }) {
-                    LOGGER.trace("Detected lang using file content: bb")
-                    BitbucketFileType
-                } else {
-                    LOGGER.trace("Detected lang: gh")
-                    GithubFileType
-                }
+//                if (firstCharsIfText.lineSequence().any(::detectBitbucketFileType)) {
+//                    LOGGER.trace("Detected lang using firstCharsIfText: bb")
+//                    BitbucketFileType
+//                    // firstCharsIfText may be not enough to find bb-specific pattern, so check whole file content
+//                } else if (file.inputStream.reader().useLines { it.any(::detectBitbucketFileType) }) {
+//                    LOGGER.trace("Detected lang using file content: bb")
+//                    BitbucketFileType
+//                } else {
+//                    LOGGER.trace("Detected lang: gh")
+//                    GithubFileType
+//                }
+                LOGGER.trace("Detected lang: GH")
+                GithubFileType
             } else {
                 // CODEOWNERS file must be text, not binary
                 LOGGER.trace("Detected lang: non-text")
